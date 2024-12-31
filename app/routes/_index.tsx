@@ -3,6 +3,7 @@ import Header from "~/components/header";
 import Hero from "~/components/hero";
 import FeatureCards from "~/components/feature-cards";
 import Featured2nd from "~/components/featured-2nd";
+import Footer from "~/components/footer";
 
 export const meta: MetaFunction = () => {
   return [
@@ -24,6 +25,7 @@ export default function Index() {
       <Hero/>
       <FeatureCards />
       <Featured2nd />
+      <Footer />
     </div>
   );
 }

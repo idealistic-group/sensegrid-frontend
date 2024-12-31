@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Search } from "lucide-react";
 
 export default function Header() {
   const [keyword, setKeyword] = useState("");
@@ -10,7 +11,7 @@ export default function Header() {
   return (
     <nav className="p-6">
       <div className="flex items-center justify-between border-2 border-neutral-900 rounded-lg p-4">
-      <div className="flex items-center">
+        <div className="flex items-center">
           <a href="/" className="font-bold text-[24px] text-neutral-900 flex items-center gap-2">
             <img 
               src="/logo/sensegrid.svg" 
@@ -21,17 +22,11 @@ export default function Header() {
           </a>
         </div>
 
-        <div className="flex items-center space-x-8 text-neutral-900">
-          <a
-            href="/why-us"
-            className=""
-          >
+        <div className="hidden md:flex items-center space-x-8 text-neutral-900">
+          <a href="/why-us" className="">
             Why Us?
           </a>
-          <a
-            href="/pricing"
-            className=""
-          >
+          <a href="/pricing" className="">
             Pricing
           </a>
         </div>
@@ -39,11 +34,14 @@ export default function Header() {
         <div className="flex items-center">
           <input
             type="text"
-            className="px-4 py-2 rounded-lg border bg-transparent focus:outline-none focus:ring-1 focus:ring-emerald-600"
+            className="hidden md:block px-4 py-2 rounded-lg border bg-transparent focus:outline-none focus:ring-1 focus:ring-emerald-600"
             placeholder="Search..."
             value={keyword}
             onChange={(e) => handleSearch(e.target.value)}
           />
+          <button className="md:hidden p-2">
+            <Search className="w-6 h-6 text-neutral-900" />
+          </button>
         </div>
       </div>
     </nav>

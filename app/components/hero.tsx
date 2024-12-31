@@ -6,7 +6,7 @@ export default function Hero() {
       <div className="flex flex-col lg:flex-row items-center lg:items-start gap-x-12 relative z-10">
         <div className="">
           <h1 className="font-extrabold tracking-tight text-neutral-900 text-left">
-            <span className="block text-8xl ">
+            <span className="block md:text-8xl text-6xl ">
               Decode Customer Needs, Define Your Success
             </span>
           </h1>
