@@ -18,9 +18,6 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   return (
     <div className="min-h-screen max-w-7xl mx-auto">
-      {/* <div className="absolute inset-0 opacity-5 text-purple-900 text-[200px] md:text-[320px] font-bold overflow-hidden whitespace-nowrap">
-        senseGrid
-      </div> */}
       <Header/>
       <Hero/>
       <FeatureCards />
