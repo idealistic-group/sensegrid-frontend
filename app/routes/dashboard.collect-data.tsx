@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { RedditPost } from '../types/reddit';
-import { collectRedditData } from '../services/dataCollect';
 import { DataCollectionForm } from '../components/DataCollectionForm';
-import { RedditStats } from '../components/RedditStats';
-import { RedditPosts } from '../components/RedditPosts';
+import { RedditStats } from '../components/Stats';
+import { RedditPosts } from '../components/posts';
 import type { MetaFunction } from '@remix-run/node';
+import { DataCollectParams, SortType, TimeFrame, collectRedditData } from '../services/dataCollect';
 
 export const meta: MetaFunction = () => {
     return [
@@ -18,12 +18,34 @@ export default function CollectData() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    const handleSubmit = async (subredditName: string, selectedSources: string[]) => {
+    const handleSubmit = async (
+        subredditName: string, 
+        selectedSources: string[], 
+        options: {
+            question?: string,
+            sortBy: SortType,
+            timeFrame: TimeFrame,
+            postLimit: number,
+            minScore?: number,
+            minComments?: number
+        }
+    ) => {
         setLoading(true);
         setError(null);
 
         try {
-            const data = await collectRedditData(subredditName, selectedSources);
+            const params: DataCollectParams = {
+                sources: selectedSources,
+                subreddit_name: subredditName || undefined,
+                question: options.question,
+                sort_by: options.sortBy,
+                time_frame: options.timeFrame,
+                post_limit: options.postLimit,
+                min_score: options.minScore,
+                min_comments: options.minComments
+            };
+            
+            const data = await collectRedditData(params);
             setRedditData(data);
         } catch (err) {
             setError('Error fetching data');
